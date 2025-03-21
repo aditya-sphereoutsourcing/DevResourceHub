@@ -30,8 +30,6 @@ const Home = () => {
     java: [...libraries.java],
     javascript: [...libraries.javascript],
     python: [...libraries.python],
-    swift: [...libraries.swift],
-    rust: [...libraries.rust],
   });
   const [activeFilters, setActiveFilters] = useState(false);
 
@@ -49,8 +47,6 @@ const Home = () => {
         java: removeDuplicates(libraries.java),
         javascript: removeDuplicates(libraries.javascript),
         python: removeDuplicates(libraries.python),
-        swift: removeDuplicates(libraries.swift),
-        rust: removeDuplicates(libraries.rust),
       };
 
       if (!hasActiveFilters) {
