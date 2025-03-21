@@ -5,7 +5,7 @@ import SearchSection from "@/components/SearchSection";
 import LanguageTabs from "@/components/LanguageTabs";
 import ContributeSection from "@/components/ContributeSection";
 import Footer from "@/components/Footer";
-import { libraries } from "@/data/libraries";
+import { libraries } from "@/data";
 import { Library } from "@/types";
 
 const Home = () => {

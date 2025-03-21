@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SearchIcon } from "lucide-react";
+import { ALL_TAG_CATEGORIES, SUPPORTED_LANGUAGES } from "@/data";
 
 interface SearchSectionProps {
   onSearch: (term: string) => void;
@@ -50,30 +51,22 @@ const SearchSection = ({ onSearch, onLanguageFilter, onCategoryFilter }: SearchS
                   onChange={handleLanguageChange}
                 >
                   <option value="">All Languages</option>
-                  <option value="c">C</option>
-                  <option value="cpp">C++</option>
-                  <option value="java">Java</option>
-                  <option value="javascript">JavaScript</option>
+                  {SUPPORTED_LANGUAGES.map((lang) => (
+                    <option key={lang} value={lang.toLowerCase()}>
+                      {lang === "cpp" ? "C++" : lang.charAt(0).toUpperCase() + lang.slice(1)}
+                    </option>
+                  ))}
                 </select>
                 <select 
                   className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                   onChange={handleCategoryChange}
                 >
                   <option value="">All Categories</option>
-                  <option value="Standard Library">Standard Libraries</option>
-                  <option value="UI">User Interface</option>
-                  <option value="Backend">Backend Development</option>
-                  <option value="Frontend">Frontend Development</option>
-                  <option value="Networking">Networking</option>
-                  <option value="Database">Database/Storage</option>
-                  <option value="Web Framework">Web Framework</option>
-                  <option value="GUI Framework">GUI Framework</option>
-                  <option value="Data Processing">Data Processing</option>
-                  <option value="Mathematics">Mathematics</option>
-                  <option value="Input/Output">Input/Output</option>
-                  <option value="String Manipulation">String Processing</option>
-                  <option value="Security">Security</option>
-                  <option value="HTTP Client">HTTP Client</option>
+                  {ALL_TAG_CATEGORIES.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
