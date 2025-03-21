@@ -110,4 +110,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📞 Contact
 
-For questions or suggestions, please open an issue on GitHub or contact us at devlibguide@example.com.
+For questions or suggestions, please open an issue on GitHub or contact us at aditya.gardian@gmail.com.
