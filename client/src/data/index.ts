@@ -13,6 +13,7 @@ import { cLibraries } from "./libraries/c";
 import { cppLibraries } from "./libraries/cpp";
 import { javaLibraries } from "./libraries/java";
 import { javascriptLibraries } from "./libraries/javascript";
+import { pythonLibraries } from "./libraries/python";
 import { Libraries } from "@/types";
 
 // Create and export the libraries object
@@ -21,6 +22,7 @@ export const libraries: Libraries = {
   cpp: cppLibraries,
   java: javaLibraries,
   javascript: javascriptLibraries,
+  python: pythonLibraries
 };
 
 // Export individual language libraries for direct access when needed
@@ -28,5 +30,6 @@ export {
   cLibraries,
   cppLibraries,
   javaLibraries,
-  javascriptLibraries
+  javascriptLibraries,
+  pythonLibraries
 };

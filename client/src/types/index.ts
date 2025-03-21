@@ -27,6 +27,7 @@ export interface Libraries {
   cpp: Library[];               // C++ programming language libraries
   java: Library[];              // Java programming language libraries
   javascript: Library[];        // JavaScript programming language libraries
+  python: Library[];            // Python programming language libraries
 }
 
 /**

@@ -51,11 +51,12 @@ const SearchSection = ({ onSearch, onLanguageFilter, onCategoryFilter }: SearchS
                   onChange={handleLanguageChange}
                 >
                   <option value="">All Languages</option>
-                  {SUPPORTED_LANGUAGES.map((lang) => (
-                    <option key={lang} value={lang.toLowerCase()}>
-                      {lang === "cpp" ? "C++" : lang.charAt(0).toUpperCase() + lang.slice(1)}
-                    </option>
-                  ))}
+                  {/* Manual language options to ensure proper display */}
+                  <option value="c">C</option>
+                  <option value="cpp">C++</option>
+                  <option value="java">Java</option>
+                  <option value="javascript">JavaScript</option>
+                  <option value="python">Python</option>
                 </select>
                 <select 
                   className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"

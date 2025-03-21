@@ -15,3 +15,4 @@ export { cLibraries } from "./c";
 export { cppLibraries } from "./cpp";
 export { javaLibraries } from "./java";
 export { javascriptLibraries } from "./javascript";
+export { pythonLibraries } from "./python";

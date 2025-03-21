@@ -107,7 +107,8 @@ export const SUPPORTED_LANGUAGES = [
   "C",
   "C++", 
   "Java",
-  "JavaScript"
+  "JavaScript",
+  "Python"
 ] as const;
 
 export type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];

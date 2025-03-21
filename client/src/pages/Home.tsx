@@ -17,6 +17,7 @@ const Home = () => {
     cpp: [...libraries.cpp],
     java: [...libraries.java],
     javascript: [...libraries.javascript],
+    python: [...libraries.python],
   });
   const [activeFilters, setActiveFilters] = useState(false);
 
