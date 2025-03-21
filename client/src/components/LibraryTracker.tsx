@@ -103,7 +103,14 @@ const LibraryTracker = ({ libraries }: LibraryTrackerProps) => {
         </div>
       </div>
       
-      <div className="mt-4 text-sm text-gray-600">
+      <div className="flex flex-col gap-4 mt-4">
+        <button
+          onClick={() => filteredLibraries.forEach(lib => onTrackLibrary(lib))}
+          className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Add All Libraries
+        </button>
+        <div className="text-sm text-gray-600">
         <p className="mb-2">
           <span className="inline-block w-3 h-3 bg-green-100 border border-green-800 rounded-full mr-2"></span>
           <span className="font-medium">Green</span>: Library has been added to the database
