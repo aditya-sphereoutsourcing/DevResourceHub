@@ -34,6 +34,7 @@ const Home = () => {
           cpp: [...libraries.cpp],
           java: [...libraries.java],
           javascript: [...libraries.javascript],
+          python: [...libraries.python],
         });
         return;
       }
@@ -44,6 +45,7 @@ const Home = () => {
         cpp: filterBySearchAndCategory(libraries.cpp),
         java: filterBySearchAndCategory(libraries.java),
         javascript: filterBySearchAndCategory(libraries.javascript),
+        python: filterBySearchAndCategory(libraries.python),
       };
 
       setFilteredLibraries(filtered);

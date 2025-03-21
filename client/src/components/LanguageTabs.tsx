@@ -8,20 +8,22 @@ interface LanguageTabsProps {
     cpp: Library[];
     java: Library[];
     javascript: Library[];
+    python: Library[];
   };
   filteredLibraries: {
     c: Library[];
     cpp: Library[];
     java: Library[];
     javascript: Library[];
+    python: Library[];
   };
   activeFilters: boolean;
 }
 
 const LanguageTabs = ({ libraries, filteredLibraries, activeFilters }: LanguageTabsProps) => {
-  const [activeTab, setActiveTab] = useState<"c" | "cpp" | "java" | "javascript">("c");
+  const [activeTab, setActiveTab] = useState<"c" | "cpp" | "java" | "javascript" | "python">("c");
 
-  const handleTabClick = (tab: "c" | "cpp" | "java" | "javascript") => {
+  const handleTabClick = (tab: "c" | "cpp" | "java" | "javascript" | "python") => {
     setActiveTab(tab);
   };
 
@@ -78,6 +80,16 @@ const LanguageTabs = ({ libraries, filteredLibraries, activeFilters }: LanguageT
                 }`}
               >
                 JavaScript
+              </button>
+              <button
+                onClick={() => handleTabClick("python")}
+                className={`language-tab whitespace-nowrap py-3 px-6 border-b-2 font-medium ${
+                  activeTab === "python"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+              >
+                Python
               </button>
             </nav>
           </div>
@@ -193,6 +205,36 @@ const LanguageTabs = ({ libraries, filteredLibraries, activeFilters }: LanguageT
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayLibraries.javascript.length > 0 ? (
               displayLibraries.javascript.map((library, index) => (
+                <LibraryCard key={index} library={library} />
+              ))
+            ) : (
+              <div className="col-span-3 text-center py-8">
+                <p className="text-gray-500">No libraries found matching your criteria.</p>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Python Language Content */}
+        <div className={activeTab === "python" ? "" : "hidden"}>
+          <div className="mb-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">Python Programming Language</h3>
+            <p className="text-gray-600 mb-6">
+              Python is a high-level, interpreted programming language known for its readability and simplicity. It supports multiple programming paradigms including procedural, object-oriented, and functional programming. Python is widely used in data science, machine learning, web development, automation, and scientific computing.
+            </p>
+            
+            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600">
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Data Science</div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Machine Learning</div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Web Development</div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Automation</div>
+            </div>
+          </div>
+
+          {/* Library Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {displayLibraries.python.length > 0 ? (
+              displayLibraries.python.map((library, index) => (
                 <LibraryCard key={index} library={library} />
               ))
             ) : (
