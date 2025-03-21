@@ -10,15 +10,11 @@ const Hero = () => {
             A comprehensive open-source guide to libraries and frameworks for web application development across multiple programming languages.
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <Link href="#languages">
-              <a className="btn bg-white text-blue-700 hover:bg-gray-100 font-medium py-2 px-6 rounded-md transition duration-200 inline-block">
-                Explore Libraries
-              </a>
+            <Link href="#languages" className="btn bg-white text-blue-700 hover:bg-gray-100 font-medium py-2 px-6 rounded-md transition duration-200 inline-block">
+              Explore Libraries
             </Link>
-            <Link href="#contribute">
-              <a className="btn bg-transparent hover:bg-blue-800 border border-white font-medium py-2 px-6 rounded-md transition duration-200 inline-block">
-                Contribute
-              </a>
+            <Link href="#contribute" className="btn bg-transparent hover:bg-blue-800 border border-white font-medium py-2 px-6 rounded-md transition duration-200 inline-block">
+              Contribute
             </Link>
           </div>
         </div>

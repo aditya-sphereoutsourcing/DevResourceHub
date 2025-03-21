@@ -54,11 +54,15 @@ const Home = () => {
         const matchesSearch =
           searchTerm === "" ||
           library.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          library.description.toLowerCase().includes(searchTerm.toLowerCase());
+          library.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          library.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
 
         const matchesCategory =
           categoryFilter === "" ||
-          library.tags.some((tag) => tag.toLowerCase().includes(categoryFilter.toLowerCase()));
+          library.tags.some((tag) => 
+            tag.toLowerCase() === categoryFilter.toLowerCase() || 
+            tag.toLowerCase().includes(categoryFilter.toLowerCase())
+          );
 
         return matchesSearch && matchesCategory;
       });

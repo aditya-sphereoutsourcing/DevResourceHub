@@ -60,11 +60,16 @@ const SearchSection = ({ onSearch, onLanguageFilter, onCategoryFilter }: SearchS
                   onChange={handleCategoryChange}
                 >
                   <option value="">All Categories</option>
-                  <option value="web">Web Framework</option>
-                  <option value="networking">Networking</option>
-                  <option value="database">Database</option>
-                  <option value="ui">UI</option>
-                  <option value="testing">Testing</option>
+                  <option value="UI">User Interface</option>
+                  <option value="Backend">Backend Development</option>
+                  <option value="Frontend">Frontend Development</option>
+                  <option value="Networking">Networking</option>
+                  <option value="Database">Database/Storage</option>
+                  <option value="Web Framework">Web Framework</option>
+                  <option value="GUI Framework">GUI Framework</option>
+                  <option value="Data Processing">Data Processing</option>
+                  <option value="Security">Security</option>
+                  <option value="HTTP Client">HTTP Client</option>
                 </select>
               </div>
             </div>
