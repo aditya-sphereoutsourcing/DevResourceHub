@@ -11,12 +11,12 @@ import { Library } from "@/types";
 // Function to remove duplicate libraries based on name
 const removeDuplicates = (libraryList: Library[]): Library[] => {
   const uniqueLibraries = new Map<string, Library>();
-  
+
   // Only keep the latest version of each library (by name)
   libraryList.forEach(library => {
     uniqueLibraries.set(library.name.toLowerCase(), library);
   });
-  
+
   return Array.from(uniqueLibraries.values());
 };
 
@@ -30,6 +30,7 @@ const Home = () => {
     java: [...libraries.java],
     javascript: [...libraries.javascript],
     python: [...libraries.python],
+    swift: [...(libraries.swift || [])] //Added this line to handle potential undefined swift
   });
   const [activeFilters, setActiveFilters] = useState(false);
 
@@ -47,6 +48,7 @@ const Home = () => {
         java: removeDuplicates(libraries.java),
         javascript: removeDuplicates(libraries.javascript),
         python: removeDuplicates(libraries.python),
+        swift: removeDuplicates(libraries.swift || []), //Added this line to handle potential undefined swift
       };
 
       if (!hasActiveFilters) {
@@ -61,6 +63,7 @@ const Home = () => {
         java: filterBySearchAndCategory(uniqueLibraries.java),
         javascript: filterBySearchAndCategory(uniqueLibraries.javascript),
         python: filterBySearchAndCategory(uniqueLibraries.python),
+        swift: filterBySearchAndCategory(uniqueLibraries.swift || []), //Added this line to handle potential undefined swift
       };
 
       setFilteredLibraries(filtered);
