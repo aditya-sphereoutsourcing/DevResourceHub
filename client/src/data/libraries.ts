@@ -3,9 +3,33 @@ import { Libraries } from "@/types";
 export const libraries: Libraries = {
   c: [
     {
+      name: "math.h",
+      version: "C Standard",
+      description: "Standard C library for mathematical operations. Provides functions for common math operations like trigonometry (sin, cos, tan), logarithms, exponentials, and various numeric calculations.",
+      tags: ["Mathematics", "Standard Library", "Numeric Computation"],
+      compatibility: "All C Standards",
+      documentationUrl: "https://en.cppreference.com/w/c/numeric/math",
+    },
+    {
+      name: "stdio.h",
+      version: "C Standard",
+      description: "Standard Input/Output library providing essential I/O functions. Contains printf(), scanf(), file operations (fopen, fread, fwrite), and stream handling for all C programs.",
+      tags: ["Standard Library", "Input/Output", "File Handling"],
+      compatibility: "All C Standards",
+      documentationUrl: "https://en.cppreference.com/w/c/io",
+    },
+    {
+      name: "string.h",
+      version: "C Standard",
+      description: "Standard string manipulation library for C. Provides functions for string operations like copying (strcpy), comparison (strcmp), concatenation (strcat), and character array handling.",
+      tags: ["Standard Library", "String Manipulation", "Memory Operations"],
+      compatibility: "All C Standards",
+      documentationUrl: "https://en.cppreference.com/w/c/string/byte",
+    },
+    {
       name: "libcurl",
       version: "7.87.0",
-      description: "A client-side URL transfer library supporting numerous protocols including HTTP, HTTPS, FTP, and more.",
+      description: "A client-side URL transfer library supporting numerous protocols including HTTP, HTTPS, FTP, and more. Used for creating web clients, API connections, and file transfers over networks.",
       tags: ["Networking", "HTTP Client", "Data Transfer"],
       compatibility: "C99+",
       documentationUrl: "https://curl.se/libcurl/",
@@ -13,7 +37,7 @@ export const libraries: Libraries = {
     {
       name: "SQLite",
       version: "3.40.1",
-      description: "A C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine.",
+      description: "A C-language library that implements a small, fast, self-contained, high-reliability, SQL database engine. Perfect for embedded applications, mobile apps, and small to medium databases.",
       tags: ["Database", "Data Storage", "SQL"],
       compatibility: "ANSI-C",
       documentationUrl: "https://www.sqlite.org/docs.html",
@@ -21,7 +45,7 @@ export const libraries: Libraries = {
     {
       name: "GTK",
       version: "4.8.3",
-      description: "A free and open-source cross-platform widget toolkit for creating graphical user interfaces (GUIs).",
+      description: "A free and open-source cross-platform widget toolkit for creating graphical user interfaces (GUIs). Used for creating desktop applications with rich user interfaces on Linux, Windows, and macOS.",
       tags: ["UI", "GUI Framework", "Desktop"],
       compatibility: "C11+",
       documentationUrl: "https://www.gtk.org/docs/",
@@ -29,7 +53,7 @@ export const libraries: Libraries = {
     {
       name: "OpenSSL",
       version: "3.0.7",
-      description: "A robust, commercial-grade, full-featured toolkit for the Transport Layer Security (TLS) protocols.",
+      description: "A robust, commercial-grade, toolkit for Transport Layer Security (TLS) protocols. Provides cryptographic functions for secure communications, certificate management, and data encryption.",
       tags: ["Security", "Cryptography", "Networking"],
       compatibility: "ANSI-C",
       documentationUrl: "https://www.openssl.org/docs/",
@@ -37,9 +61,33 @@ export const libraries: Libraries = {
   ],
   cpp: [
     {
+      name: "<algorithm>",
+      version: "C++ Standard",
+      description: "Standard C++ library providing a collection of functions for algorithms like sorting, searching, manipulating and performing operations on sequences and ranges. Includes sort(), find(), transform() functions.",
+      tags: ["Standard Library", "Algorithms", "Data Processing"],
+      compatibility: "C++98 and later",
+      documentationUrl: "https://en.cppreference.com/w/cpp/algorithm",
+    },
+    {
+      name: "<vector>",
+      version: "C++ Standard",
+      description: "Standard C++ container representing a dynamic array. Allows dynamic memory allocation, automatic resizing, and comes with iterators for STL algorithm compatibility. Essential for managing collections of objects.",
+      tags: ["Standard Library", "Container", "Data Structure"],
+      compatibility: "C++98 and later",
+      documentationUrl: "https://en.cppreference.com/w/cpp/container/vector",
+    },
+    {
+      name: "<iostream>",
+      version: "C++ Standard",
+      description: "Standard C++ input/output stream library. Provides cin and cout objects for console I/O, file stream operations, and formatting capabilities for text-based input and output.",
+      tags: ["Standard Library", "Input/Output", "Streams"],
+      compatibility: "C++98 and later",
+      documentationUrl: "https://en.cppreference.com/w/cpp/io",
+    },
+    {
       name: "Boost",
       version: "1.80.0",
-      description: "A set of libraries for the C++ programming language that provide support for tasks and structures such as multithreading, networking, and more.",
+      description: "A set of libraries for C++ providing support for tasks and structures such as multithreading, networking, memory management, and linear algebra. Often considered a testing ground for additions to the C++ Standard Library.",
       tags: ["Core Utilities", "Multithreading", "Networking"],
       compatibility: "C++11, C++14, C++17, C++20",
       documentationUrl: "https://www.boost.org/doc/",
@@ -47,7 +95,7 @@ export const libraries: Libraries = {
     {
       name: "Qt",
       version: "6.4.1",
-      description: "A cross-platform application development framework widely used for developing GUI applications as well as non-GUI programs.",
+      description: "A cross-platform application development framework used for developing GUI applications as well as non-GUI programs. Includes tools for UI design, database access, networking, and more for professional application development.",
       tags: ["UI", "GUI Framework", "Cross-Platform"],
       compatibility: "C++17+",
       documentationUrl: "https://doc.qt.io/",
@@ -55,7 +103,7 @@ export const libraries: Libraries = {
     {
       name: "OpenCV",
       version: "4.6.0",
-      description: "An open-source computer vision and machine learning software library with interfaces for multiple languages.",
+      description: "An open-source computer vision and machine learning software library with interfaces for multiple languages. Includes 2500+ algorithms for image processing, object detection, face recognition, and machine learning.",
       tags: ["Computer Vision", "Image Processing", "Machine Learning"],
       compatibility: "C++11+",
       documentationUrl: "https://docs.opencv.org/",
@@ -63,7 +111,7 @@ export const libraries: Libraries = {
     {
       name: "Poco",
       version: "1.12.4",
-      description: "C++ libraries for building network and internet-based applications that run on desktop, server, mobile, and embedded systems.",
+      description: "C++ libraries for building network and internet-based applications on desktop, server, mobile, and embedded systems. Provides network protocols, database access, and cryptography components.",
       tags: ["Networking", "Web Development", "Backend"],
       compatibility: "C++14+",
       documentationUrl: "https://pocoproject.org/documentation.html",
@@ -71,9 +119,33 @@ export const libraries: Libraries = {
   ],
   java: [
     {
+      name: "java.util",
+      version: "Java Standard",
+      description: "Core Java package containing the collections framework, legacy collection classes, event model, date and time facilities, internationalization, and miscellaneous utility classes and interfaces.",
+      tags: ["Standard Library", "Collections", "Utilities"],
+      compatibility: "All Java versions",
+      documentationUrl: "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/package-summary.html",
+    },
+    {
+      name: "java.io",
+      version: "Java Standard",
+      description: "Java's core package for system input and output through data streams, serialization and the file system. Provides classes for reading and writing data to files, networks, and other sources.",
+      tags: ["Standard Library", "Input/Output", "File Handling"],
+      compatibility: "All Java versions",
+      documentationUrl: "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/package-summary.html",
+    },
+    {
+      name: "java.nio",
+      version: "Java Standard",
+      description: "New input/output APIs that offer features like channel-based I/O, selectors for multiplexed non-blocking I/O, and memory-mapped files for faster I/O operations. Better performance than traditional java.io.",
+      tags: ["Standard Library", "Input/Output", "Asynchronous I/O"],
+      compatibility: "Java 1.4+",
+      documentationUrl: "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/package-summary.html",
+    },
+    {
       name: "Spring Framework",
       version: "6.0.4",
-      description: "A comprehensive programming and configuration model for modern Java-based enterprise applications on any deployment platform.",
+      description: "A comprehensive programming and configuration model for modern Java-based enterprise applications. Provides infrastructure support, dependency injection, data access, transaction management, and web development tools.",
       tags: ["Backend", "Web Framework", "Enterprise"],
       compatibility: "Java 17+",
       documentationUrl: "https://docs.spring.io/spring-framework/docs/current/reference/html/",
@@ -81,7 +153,7 @@ export const libraries: Libraries = {
     {
       name: "Hibernate",
       version: "6.1.6",
-      description: "An object-relational mapping tool for Java that provides a framework for mapping an object-oriented domain model to a relational database.",
+      description: "An object-relational mapping tool for Java that maps object models to database tables. Handles database operations, query generation, and transaction management while letting developers work with Java objects.",
       tags: ["Database", "ORM", "Data Storage"],
       compatibility: "Java 11+",
       documentationUrl: "https://hibernate.org/orm/documentation/",
@@ -89,7 +161,7 @@ export const libraries: Libraries = {
     {
       name: "Apache Tomcat",
       version: "10.1.5",
-      description: "An open-source implementation of the Jakarta Servlet, Jakarta Server Pages, and other technologies for developing Java web applications.",
+      description: "An open-source implementation of Jakarta Servlet, Jakarta Server Pages, and related technologies for implementing Java web applications. Acts as a web server and servlet container for Java applications.",
       tags: ["Web Server", "Backend", "Servlet Container"],
       compatibility: "Java 8+",
       documentationUrl: "https://tomcat.apache.org/tomcat-10.1-doc/index.html",
@@ -97,7 +169,7 @@ export const libraries: Libraries = {
     {
       name: "Jackson",
       version: "2.14.1",
-      description: "A suite of data-processing tools for Java, including a JSON parsing and generation library, as well as extensions for various data formats.",
+      description: "A suite of data-processing tools for Java, primarily for JSON serialization/deserialization. Can convert Java objects to JSON and back, with support for streaming, tree models, and data binding.",
       tags: ["Data Processing", "JSON", "Serialization"],
       compatibility: "Java 8+",
       documentationUrl: "https://github.com/FasterXML/jackson",
@@ -105,9 +177,33 @@ export const libraries: Libraries = {
   ],
   javascript: [
     {
+      name: "Math",
+      version: "ES Standard",
+      description: "JavaScript's built-in Math object providing properties and methods for mathematical operations. Includes functions for random number generation, rounding, trigonometry, logarithms, and constants like PI.",
+      tags: ["Standard Library", "Mathematics", "Numeric Computation"],
+      compatibility: "All JavaScript environments",
+      documentationUrl: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math",
+    },
+    {
+      name: "Array",
+      version: "ES Standard",
+      description: "JavaScript's built-in array object with methods for manipulating arrays. Provides functions for adding/removing elements, sorting, filtering, mapping, reducing, and other common array operations.",
+      tags: ["Standard Library", "Data Structure", "Collections"],
+      compatibility: "All JavaScript environments",
+      documentationUrl: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    },
+    {
+      name: "Fetch API",
+      version: "ES Standard",
+      description: "Modern JavaScript API for making HTTP requests. Provides a cleaner, promise-based mechanism for retrieving resources asynchronously across the network, replacing the older XMLHttpRequest.",
+      tags: ["Standard Library", "Networking", "HTTP Client"],
+      compatibility: "Modern browsers, Node.js with polyfill",
+      documentationUrl: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+    },
+    {
       name: "React",
       version: "18.2.0",
-      description: "A JavaScript library for building user interfaces, particularly single-page applications where UI updates are frequent.",
+      description: "A JavaScript library for building user interfaces with a component-based architecture. Excels at building single-page applications with a virtual DOM for efficient UI updates and a unidirectional data flow.",
       tags: ["UI", "Frontend", "GUI Framework"],
       compatibility: "Browser, Node.js",
       documentationUrl: "https://reactjs.org/docs/getting-started.html",
@@ -115,7 +211,7 @@ export const libraries: Libraries = {
     {
       name: "Express.js",
       version: "4.18.2",
-      description: "A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.",
+      description: "A minimal and flexible Node.js web application framework providing robust features for web and mobile applications. Helps with routing, middleware integration, and HTTP utility methods for APIs and web servers.",
       tags: ["Backend", "Web Framework", "Server"],
       compatibility: "Node.js",
       documentationUrl: "https://expressjs.com/en/4x/api.html",
@@ -123,7 +219,7 @@ export const libraries: Libraries = {
     {
       name: "Vue.js",
       version: "3.2.45",
-      description: "A progressive framework for building user interfaces that's designed to be incrementally adoptable.",
+      description: "A progressive framework for building user interfaces with an incrementally adoptable architecture. Features a virtual DOM, component-based structure, and reactive data binding with an approachable learning curve.",
       tags: ["UI", "Frontend", "GUI Framework"],
       compatibility: "Browser",
       documentationUrl: "https://vuejs.org/guide/introduction.html",
@@ -131,7 +227,7 @@ export const libraries: Libraries = {
     {
       name: "Axios",
       version: "1.2.1",
-      description: "A promise-based HTTP client for the browser and Node.js with an easy-to-use API for making HTTP requests.",
+      description: "A promise-based HTTP client for browser and Node.js with an easy-to-use API. Provides features like request/response interception, automatic JSON transformation, and protection against XSRF attacks.",
       tags: ["Networking", "HTTP Client", "Data Transfer"],
       compatibility: "Browser, Node.js",
       documentationUrl: "https://axios-http.com/docs/intro",
