@@ -41,4 +41,47 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
 export type InsertLibrary = z.infer<typeof insertLibrarySchema>;
+// Example and integration pattern schema
+export const examples = pgTable("examples", {
+  id: serial("id").primaryKey(),
+  libraryId: integer("library_id").notNull(),
+  title: text("title").notNull(),
+  code: text("code").notNull(),
+  description: text("description").notNull(),
+});
+
+// Version history schema
+export const versions = pgTable("versions", {
+  id: serial("id").primaryKey(),
+  libraryId: integer("library_id").notNull(),
+  version: text("version").notNull(),
+  releaseDate: text("release_date").notNull(),
+  breakingChanges: boolean("breaking_changes").notNull(),
+  changes: text("changes").array().notNull(),
+});
+
+// Community reviews schema
+export const reviews = pgTable("reviews", {
+  id: serial("id").primaryKey(),
+  libraryId: integer("library_id").notNull(),
+  userId: integer("user_id").notNull(),
+  rating: integer("rating").notNull(),
+  comment: text("comment").notNull(),
+  experience: text("experience").notNull(),
+});
+
+// Analytics schema
+export const analytics = pgTable("analytics", {
+  id: serial("id").primaryKey(),
+  libraryId: integer("library_id").notNull(),
+  downloads: integer("downloads").notNull(),
+  stars: integer("stars").notNull(),
+  issues: integer("issues").notNull(),
+  lastUpdate: text("last_update").notNull(),
+});
+
 export type Library = typeof libraries.$inferSelect;
+export type Example = typeof examples.$inferSelect;
+export type Version = typeof versions.$inferSelect;
+export type Review = typeof reviews.$inferSelect;
+export type Analytics = typeof analytics.$inferSelect;
