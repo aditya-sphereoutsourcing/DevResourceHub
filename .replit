@@ -7,7 +7,7 @@ channel = "stable-24_05"
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["sh", "-c", "node dist/index.js"]
+run = ["sh", "-c", ""]
 build = ["sh", "-c", "npm run build"]
 
 [[ports]]
@@ -43,6 +43,15 @@ waitForPort = 5000
 
 [[workflows.workflow]]
 name = "Build for Production"
+author = 40614473
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow]]
+name = "Build"
 author = 40614473
 mode = "sequential"
 
