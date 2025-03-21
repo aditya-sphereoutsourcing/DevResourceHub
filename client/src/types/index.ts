@@ -28,6 +28,8 @@ export interface Libraries {
   java: Library[];              // Java programming language libraries
   javascript: Library[];        // JavaScript programming language libraries
   python: Library[];            // Python programming language libraries
+  swift: Library[];           // Swift programming language libraries
+  rust: Library[];            // Rust programming language libraries
 }
 
 /**

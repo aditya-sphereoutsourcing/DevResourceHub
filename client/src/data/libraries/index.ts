@@ -16,3 +16,5 @@ export { cppLibraries } from "./cpp";
 export { javaLibraries } from "./java";
 export { javascriptLibraries } from "./javascript";
 export { pythonLibraries } from "./python";
+export { swiftLibraries } from "./swift";
+export { rustLibraries } from "./rust";
