@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LibraryCard from "./LibraryCard";
+import LibraryTracker from "./LibraryTracker";
 import { Library } from "@/types";
 
 interface LanguageTabsProps {

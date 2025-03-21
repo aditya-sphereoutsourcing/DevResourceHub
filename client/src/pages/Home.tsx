@@ -8,6 +8,18 @@ import Footer from "@/components/Footer";
 import { libraries } from "@/data";
 import { Library } from "@/types";
 
+// Function to remove duplicate libraries based on name
+const removeDuplicates = (libraryList: Library[]): Library[] => {
+  const uniqueLibraries = new Map<string, Library>();
+  
+  // Only keep the latest version of each library (by name)
+  libraryList.forEach(library => {
+    uniqueLibraries.set(library.name.toLowerCase(), library);
+  });
+  
+  return Array.from(uniqueLibraries.values());
+};
+
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [languageFilter, setLanguageFilter] = useState("");
@@ -28,24 +40,27 @@ const Home = () => {
       const hasActiveFilters = searchTerm !== "" || languageFilter !== "" || categoryFilter !== "";
       setActiveFilters(hasActiveFilters);
 
+      // Remove duplicates from each language's libraries
+      const uniqueLibraries = {
+        c: removeDuplicates(libraries.c),
+        cpp: removeDuplicates(libraries.cpp),
+        java: removeDuplicates(libraries.java),
+        javascript: removeDuplicates(libraries.javascript),
+        python: removeDuplicates(libraries.python),
+      };
+
       if (!hasActiveFilters) {
-        setFilteredLibraries({
-          c: [...libraries.c],
-          cpp: [...libraries.cpp],
-          java: [...libraries.java],
-          javascript: [...libraries.javascript],
-          python: [...libraries.python],
-        });
+        setFilteredLibraries(uniqueLibraries);
         return;
       }
 
-      // Filter each language's libraries
+      // Filter each language's libraries (after removing duplicates)
       const filtered = {
-        c: filterBySearchAndCategory(libraries.c),
-        cpp: filterBySearchAndCategory(libraries.cpp),
-        java: filterBySearchAndCategory(libraries.java),
-        javascript: filterBySearchAndCategory(libraries.javascript),
-        python: filterBySearchAndCategory(libraries.python),
+        c: filterBySearchAndCategory(uniqueLibraries.c),
+        cpp: filterBySearchAndCategory(uniqueLibraries.cpp),
+        java: filterBySearchAndCategory(uniqueLibraries.java),
+        javascript: filterBySearchAndCategory(uniqueLibraries.javascript),
+        python: filterBySearchAndCategory(uniqueLibraries.python),
       };
 
       setFilteredLibraries(filtered);
