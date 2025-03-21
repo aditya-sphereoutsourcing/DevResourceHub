@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background element -->
+  <rect width="200" height="60" rx="8" fill="#EFF6FF" />
+  
+  <!-- Code brackets and book icon -->
+  <path d="M40 15L30 30L40 45" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M60 15L70 30L60 45" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="42" y="20" width="16" height="20" rx="2" fill="#1E40AF"/>
+  <rect x="45" y="24" width="10" height="1" rx="0.5" fill="white"/>
+  <rect x="45" y="27" width="10" height="1" rx="0.5" fill="white"/>
+  <rect x="45" y="30" width="10" height="1" rx="0.5" fill="white"/>
+  <rect x="45" y="33" width="7" height="1" rx="0.5" fill="white"/>
+  
+  <!-- DevLibGuide text -->
+  <path d="M85 23.5C85 21.0147 87.0147 19 89.5 19H92.5C94.9853 19 97 21.0147 97 23.5V23.5C97 25.9853 94.9853 28 92.5 28H89.5C87.0147 28 85 25.9853 85 23.5V23.5Z" fill="#3B82F6"/>
+  <path d="M99 19.5H102L107 28H103.5L99 19.5Z" fill="#3B82F6"/>
+  <path d="M107 19.5H111L115 28H111.5L107 19.5Z" fill="#3B82F6"/>
+  <path d="M119 19H116V28H119C121.761 28 124 25.7614 124 23C124 20.2386 121.761 18 119 18V19Z" fill="#3B82F6"/>
+  <path d="M127 19H130V26H138V19H141V30H127V19Z" fill="#1E40AF"/>
+  <path d="M143 19H146V21H149V19H152V30H149V24H146V30H143V19Z" fill="#1E40AF"/>
+  <path d="M155 23.5C155 21.0147 157.015 19 159.5 19H162.5C164.985 19 167 21.0147 167 23.5V23.5C167 25.9853 164.985 28 162.5 28H159.5C157.015 28 155 25.9853 155 23.5V23.5Z" fill="#1E40AF"/>
+  <path d="M169 19.25H172V30H169V19.25Z" fill="#1E40AF"/>
+  <path d="M177 19H185V22H180V23H184V25H180V27H185V30H177V19Z" fill="#1E40AF"/>
+
+  <!-- Tagline -->
+  <text x="100" y="40" text-anchor="middle" font-family="Arial" font-size="6" fill="#6B7280">
+    Open-Source Library Resource
+  </text>
+</svg>
