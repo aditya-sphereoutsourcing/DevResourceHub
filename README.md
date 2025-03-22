@@ -1,4 +1,4 @@
-# DevLibGuide
+# DevResourceHub
 
 A comprehensive open-source resource for programming libraries across multiple languages. This project serves as a central hub for developers to discover, learn about, and compare libraries for their projects.
 
@@ -16,7 +16,7 @@ A comprehensive open-source resource for programming libraries across multiple l
 ## 📋 Project Structure
 
 ```
-DevLibGuide/
+DevResourceHub/
 ├── client/                 # Frontend code
 │   ├── public/             # Public assets
 │   └── src/
@@ -52,8 +52,8 @@ DevLibGuide/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/devlibguide.git
-   cd devlibguide
+   git clone https://github.com/yourusername/DevResourceHub.git
+   cd DevResourceHub
    ```
 
 2. Install dependencies:
