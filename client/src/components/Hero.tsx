@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Code, BarChart } from "lucide-react";
+import { Code, BarChart, BookOpen } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -20,7 +20,7 @@ const Hero = () => {
           </div>
           
           <div className="mt-6 pt-4 border-t border-blue-600">
-            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-4 flex-wrap">
               <Link href="/playground" className="flex items-center bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105">
                 <Code className="h-5 w-5 mr-2" />
                 Try Interactive Code Playground
@@ -29,8 +29,12 @@ const Hero = () => {
                 <BarChart className="h-5 w-5 mr-2" />
                 Compare Libraries
               </Link>
+              <Link href="/practice" className="flex items-center bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105">
+                <BookOpen className="h-5 w-5 mr-2" />
+                Practice Coding & Algorithms
+              </Link>
             </div>
-            <p className="text-sm text-blue-200 mt-4">Explore and compare libraries across multiple languages</p>
+            <p className="text-sm text-blue-200 mt-4">Interactive tools to explore, compare and improve your coding skills</p>
           </div>
         </div>
       </div>
