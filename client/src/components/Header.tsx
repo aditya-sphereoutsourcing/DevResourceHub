@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { CodeIcon, Code, BarChart } from "lucide-react";
+import { CodeIcon, Code, BarChart, BookOpen } from "lucide-react";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,6 +34,10 @@ const Header = () => {
           <Link href="/compare" className="text-gray-700 hover:text-blue-700 font-medium flex items-center">
             <BarChart className="h-5 w-5 mr-1" />
             Compare
+          </Link>
+          <Link href="/practice" className="text-gray-700 hover:text-blue-700 font-medium flex items-center">
+            <BookOpen className="h-5 w-5 mr-1" />
+            Practice
           </Link>
           <Link href="/#contribute" className="text-gray-700 hover:text-blue-700 font-medium">
             Contribute
@@ -114,6 +118,14 @@ const Header = () => {
           >
             <BarChart className="h-5 w-5 mr-2" />
             Compare
+          </Link>
+          <Link
+            href="/practice"
+            className="block py-2 text-gray-700 font-medium flex items-center"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <BookOpen className="h-5 w-5 mr-2" />
+            Practice
           </Link>
           <Link
             href="/#contribute"

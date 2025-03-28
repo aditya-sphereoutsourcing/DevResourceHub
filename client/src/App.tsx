@@ -6,6 +6,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import CodePlaygroundPage from "@/pages/CodePlaygroundPage";
 import ComparisonPage from "@/pages/ComparisonPage";
+import PracticeGroundPage from "@/pages/PracticeGroundPage";
 
 function Router() {
   return (
@@ -13,6 +14,8 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/playground" component={CodePlaygroundPage} />
       <Route path="/compare" component={ComparisonPage} />
+      <Route path="/practice" component={PracticeGroundPage} />
+      <Route path="/practice-embed/:problemId" component={PracticeGroundPage} />
       <Route component={NotFound} />
     </Switch>
   );
