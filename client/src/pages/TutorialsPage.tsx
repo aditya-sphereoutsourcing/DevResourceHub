@@ -200,7 +200,7 @@ export default function TutorialsPage() {
                   </CardContent>
                   <CardFooter className="flex justify-between pt-2 border-t">
                     <div className="flex flex-wrap gap-1 max-w-[80%]">
-                      {tutorial.tags.slice(0, 3).map((tag, i) => (
+                      {tutorial.tags.slice(0, 3).map((tag: string, i: number) => (
                         <Badge variant="outline" key={i} className="text-xs">
                           {tag}
                         </Badge>
@@ -250,7 +250,7 @@ export default function TutorialsPage() {
             
             <TabsContent value="language" className="space-y-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {['JavaScript', 'Python', 'C++', 'Rust', 'Swift', 'Java', 'C'].map((lang) => (
+                {['JavaScript', 'Python', 'C++', 'Rust', 'Swift', 'Java', 'C'].map((lang: string) => (
                   <Button
                     key={lang}
                     variant="outline"
@@ -270,7 +270,7 @@ export default function TutorialsPage() {
             
             <TabsContent value="library" className="space-y-4">
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {['React', 'NumPy', 'STL', 'tokio', 'Combine', 'Spring', 'math.h'].map((lib) => (
+                {['React', 'NumPy', 'STL', 'tokio', 'Combine', 'Spring', 'math.h'].map((lib: string) => (
                   <Button
                     key={lib}
                     variant="outline"
@@ -290,7 +290,7 @@ export default function TutorialsPage() {
             
             <TabsContent value="topic" className="space-y-4">
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {['Data Structures', 'Algorithms', 'UI', 'Networking', 'Async', 'Testing', 'Performance', 'Security'].map((topic) => (
+                {['Data Structures', 'Algorithms', 'UI', 'Networking', 'Async', 'Testing', 'Performance', 'Security'].map((topic: string) => (
                   <Button
                     key={topic}
                     variant="outline"
