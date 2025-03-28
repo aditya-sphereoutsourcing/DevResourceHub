@@ -30,7 +30,8 @@ const Home = () => {
     java: [...libraries.java],
     javascript: [...libraries.javascript],
     python: [...libraries.python],
-    swift: [...(libraries.swift || [])] //Added this line to handle potential undefined swift
+    swift: [...(libraries.swift || [])],
+    rust: [...(libraries.rust || [])]
   });
   const [activeFilters, setActiveFilters] = useState(false);
 
@@ -48,7 +49,8 @@ const Home = () => {
         java: removeDuplicates(libraries.java),
         javascript: removeDuplicates(libraries.javascript),
         python: removeDuplicates(libraries.python),
-        swift: removeDuplicates(libraries.swift || []), //Added this line to handle potential undefined swift
+        swift: removeDuplicates(libraries.swift || []),
+        rust: removeDuplicates(libraries.rust || [])
       };
 
       if (!hasActiveFilters) {
@@ -63,7 +65,8 @@ const Home = () => {
         java: filterBySearchAndCategory(uniqueLibraries.java),
         javascript: filterBySearchAndCategory(uniqueLibraries.javascript),
         python: filterBySearchAndCategory(uniqueLibraries.python),
-        swift: filterBySearchAndCategory(uniqueLibraries.swift || []), //Added this line to handle potential undefined swift
+        swift: filterBySearchAndCategory(uniqueLibraries.swift || []),
+        rust: filterBySearchAndCategory(uniqueLibraries.rust || [])
       };
 
       setFilteredLibraries(filtered);

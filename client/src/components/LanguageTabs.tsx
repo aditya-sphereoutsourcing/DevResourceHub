@@ -1,6 +1,5 @@
 import { useState } from "react";
 import LibraryCard from "./LibraryCard";
-import LibraryTracker from "./LibraryTracker";
 import { Library } from "@/types";
 
 interface LanguageTabsProps {
@@ -10,6 +9,8 @@ interface LanguageTabsProps {
     java: Library[];
     javascript: Library[];
     python: Library[];
+    swift: Library[];
+    rust: Library[];
   };
   filteredLibraries: {
     c: Library[];
@@ -17,14 +18,16 @@ interface LanguageTabsProps {
     java: Library[];
     javascript: Library[];
     python: Library[];
+    swift: Library[];
+    rust: Library[];
   };
   activeFilters: boolean;
 }
 
 const LanguageTabs = ({ libraries, filteredLibraries, activeFilters }: LanguageTabsProps) => {
-  const [activeTab, setActiveTab] = useState<"c" | "cpp" | "java" | "javascript" | "python">("c");
+  const [activeTab, setActiveTab] = useState<"c" | "cpp" | "java" | "javascript" | "python" | "rust" | "swift">("c");
 
-  const handleTabClick = (tab: "c" | "cpp" | "java" | "javascript" | "python") => {
+  const handleTabClick = (tab: "c" | "cpp" | "java" | "javascript" | "python" | "rust" | "swift") => {
     setActiveTab(tab);
   };
 
@@ -91,6 +94,26 @@ const LanguageTabs = ({ libraries, filteredLibraries, activeFilters }: LanguageT
                 }`}
               >
                 Python
+              </button>
+              <button
+                onClick={() => handleTabClick("rust")}
+                className={`language-tab whitespace-nowrap py-3 px-6 border-b-2 font-medium ${
+                  activeTab === "rust"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+              >
+                Rust
+              </button>
+              <button
+                onClick={() => handleTabClick("swift")}
+                className={`language-tab whitespace-nowrap py-3 px-6 border-b-2 font-medium ${
+                  activeTab === "swift"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                }`}
+              >
+                Swift
               </button>
             </nav>
           </div>
@@ -236,6 +259,66 @@ const LanguageTabs = ({ libraries, filteredLibraries, activeFilters }: LanguageT
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayLibraries.python.length > 0 ? (
               displayLibraries.python.map((library, index) => (
+                <LibraryCard key={index} library={library} />
+              ))
+            ) : (
+              <div className="col-span-3 text-center py-8">
+                <p className="text-gray-500">No libraries found matching your criteria.</p>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Rust Language Content */}
+        <div className={activeTab === "rust" ? "" : "hidden"}>
+          <div className="mb-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">Rust Programming Language</h3>
+            <p className="text-gray-600 mb-6">
+              Rust is a systems programming language focused on safety, speed, and concurrency. It achieves memory safety without a garbage collector, making it ideal for performance-critical services, embedded devices, and applications where resource usage is crucial. It features zero-cost abstractions, safe concurrency, and pattern matching.
+            </p>
+            
+            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600">
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Systems Programming</div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Memory Safety</div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Concurrent Processing</div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">WebAssembly</div>
+            </div>
+          </div>
+
+          {/* Library Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {displayLibraries.rust && displayLibraries.rust.length > 0 ? (
+              displayLibraries.rust.map((library, index) => (
+                <LibraryCard key={index} library={library} />
+              ))
+            ) : (
+              <div className="col-span-3 text-center py-8">
+                <p className="text-gray-500">No libraries found matching your criteria.</p>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Swift Language Content */}
+        <div className={activeTab === "swift" ? "" : "hidden"}>
+          <div className="mb-8 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">Swift Programming Language</h3>
+            <p className="text-gray-600 mb-6">
+              Swift is a powerful and intuitive programming language developed by Apple for iOS, macOS, watchOS, and tvOS. It's designed to be safe, fast, and expressive, making it easier for developers to build high-quality apps. Swift code is concise yet expressive, with modern features like type inference, optionals, and closures.
+            </p>
+            
+            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600">
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">iOS Development</div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">macOS Development</div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Apple Ecosystem</div>
+              <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Type Safety</div>
+            </div>
+          </div>
+
+          {/* Library Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {displayLibraries.swift && displayLibraries.swift.length > 0 ? (
+              displayLibraries.swift.map((library, index) => (
                 <LibraryCard key={index} library={library} />
               ))
             ) : (
