@@ -5,9 +5,15 @@ set -e
 
 echo "Starting Netlify deployment process..."
 
+# 0. Ensure development dependencies are installed for the build
+echo "Installing dependencies..."
+npm ci
+
 # 1. Build the application
 echo "Building the application..."
-npm run build
+# Use NPX to ensure vite is found in the path
+npx vite build
+npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
 
 # 2. Generate Netlify functions
 echo "Generating Netlify functions..."
