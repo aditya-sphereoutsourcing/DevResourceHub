@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { CodeIcon, Code, BarChart, BookOpen } from "lucide-react";
+import { CodeIcon, Code, BarChart, BookOpen, BookOpenCheck } from "lucide-react";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -38,6 +38,10 @@ const Header = () => {
           <Link href="/practice" className="text-gray-700 hover:text-blue-700 font-medium flex items-center">
             <BookOpen className="h-5 w-5 mr-1" />
             Practice
+          </Link>
+          <Link href="/tutorials" className="text-gray-700 hover:text-blue-700 font-medium flex items-center">
+            <BookOpenCheck className="h-5 w-5 mr-1" />
+            Tutorials
           </Link>
           <Link href="/#contribute" className="text-gray-700 hover:text-blue-700 font-medium">
             Contribute
@@ -126,6 +130,14 @@ const Header = () => {
           >
             <BookOpen className="h-5 w-5 mr-2" />
             Practice
+          </Link>
+          <Link
+            href="/tutorials"
+            className="block py-2 text-gray-700 font-medium flex items-center"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <BookOpenCheck className="h-5 w-5 mr-2" />
+            Tutorials
           </Link>
           <Link
             href="/#contribute"

@@ -7,6 +7,8 @@ import Home from "@/pages/Home";
 import CodePlaygroundPage from "@/pages/CodePlaygroundPage";
 import ComparisonPage from "@/pages/ComparisonPage";
 import PracticeGroundPage from "@/pages/PracticeGroundPage";
+import TutorialsPage from "@/pages/TutorialsPage";
+import TutorialDetailPage from "@/pages/TutorialDetailPage";
 
 function Router() {
   return (
@@ -18,6 +20,8 @@ function Router() {
       <Route path="/practice-embed/:problemId" component={PracticeGroundPage} />
       <Route path="/practice/editor" component={PracticeGroundPage} />
       <Route path="/practice/editor/:problemId" component={PracticeGroundPage} />
+      <Route path="/tutorials" component={TutorialsPage} />
+      <Route path="/tutorials/:slug" component={TutorialDetailPage} />
       <Route component={NotFound} />
     </Switch>
   );

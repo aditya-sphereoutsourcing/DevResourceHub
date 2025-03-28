@@ -41,6 +41,7 @@ export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
 export type InsertLibrary = z.infer<typeof insertLibrarySchema>;
+
 // Example and integration pattern schema
 export const examples = pgTable("examples", {
   id: serial("id").primaryKey(),
@@ -48,6 +49,41 @@ export const examples = pgTable("examples", {
   title: text("title").notNull(),
   code: text("code").notNull(),
   description: text("description").notNull(),
+});
+
+// Tutorials schema
+export const tutorials = pgTable("tutorials", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  language: text("language").notNull(),
+  libraryName: text("library_name").notNull(),
+  difficulty: text("difficulty").notNull(), // beginner, intermediate, advanced
+  author: text("author"),
+  publishDate: text("publish_date").notNull(),
+  lastUpdated: text("last_updated").notNull(),
+  content: text("content").notNull(),
+  tags: text("tags").array().notNull(),
+  readTime: integer("read_time").notNull(), // in minutes
+  codeExamples: text("code_examples").array(),
+  relatedTutorials: text("related_tutorials").array(),
+});
+
+// Define the insert schema for tutorials
+export const insertTutorialSchema = createInsertSchema(tutorials).pick({
+  title: true,
+  slug: true,
+  language: true,
+  libraryName: true,
+  difficulty: true,
+  author: true,
+  publishDate: true,
+  lastUpdated: true,
+  content: true,
+  tags: true,
+  readTime: true,
+  codeExamples: true,
+  relatedTutorials: true,
 });
 
 // Version history schema
@@ -82,6 +118,8 @@ export const analytics = pgTable("analytics", {
 
 export type Library = typeof libraries.$inferSelect;
 export type Example = typeof examples.$inferSelect;
+export type Tutorial = typeof tutorials.$inferSelect;
+export type InsertTutorial = z.infer<typeof insertTutorialSchema>;
 export type Version = typeof versions.$inferSelect;
 export type Review = typeof reviews.$inferSelect;
 export type Analytics = typeof analytics.$inferSelect;
