@@ -3,8 +3,8 @@
 [build]
   # Directory to publish (static site)
   publish = "dist"
-  # Default build command - using direct commands instead of npm scripts to avoid 'vite not found' error
-  command = "npx vite build && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && node scripts/generate-netlify-functions.ts"
+  # Use our dedicated Netlify build script
+  command = "bash ./scripts/netlify-build.sh"
   # Directory with serverless functions
   functions = "netlify/functions"
 

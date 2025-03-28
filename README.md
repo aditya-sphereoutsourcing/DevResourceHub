@@ -160,8 +160,8 @@ This project is set up for easy deployment to Netlify with serverless functions 
    - Fork or clone this repository to your GitHub account
    - Login to your Netlify account and click "New site from Git"
    - Connect your GitHub repository
-   - Configure build settings:
-     - Build command: `npm run build && node scripts/generate-netlify-functions.ts`
+   - The build settings will be automatically configured from the netlify.toml file:
+     - Build command: `bash ./scripts/netlify-build.sh` (handles all build steps)
      - Publish directory: `dist`
    - Configure environment variables in the Netlify UI
    - Deploy!
