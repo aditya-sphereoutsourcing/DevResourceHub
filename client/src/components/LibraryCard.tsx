@@ -1,11 +1,20 @@
-import { ExternalLinkIcon } from "lucide-react";
+import { useState } from "react";
+import { ExternalLinkIcon, Code, ChevronDown, ChevronUp } from "lucide-react";
 import { Library } from "@/types";
+import LibraryExamples from "./LibraryExamples";
+import { allExamples } from "@/data/examples";
+import { Button } from "./ui/button";
 
 interface LibraryCardProps {
   library: Library;
 }
 
 const LibraryCard = ({ library }: LibraryCardProps) => {
+  const [showExamples, setShowExamples] = useState(false);
+  
+  // Check if we have examples for this library
+  const hasExamples = allExamples[library.name] !== undefined;
+  
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
       <div className="p-6">
@@ -31,6 +40,22 @@ const LibraryCard = ({ library }: LibraryCardProps) => {
               {library.compatibility}
             </div>
             <div className="flex space-x-2">
+              {hasExamples && (
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-blue-600 hover:text-blue-800 hover:bg-blue-50"
+                  onClick={() => setShowExamples(!showExamples)}
+                >
+                  <Code className="h-4 w-4 mr-1" />
+                  Examples
+                  {showExamples ? (
+                    <ChevronUp className="ml-1 h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="ml-1 h-4 w-4" />
+                  )}
+                </Button>
+              )}
               <a 
                 href={library.documentationUrl} 
                 target="_blank" 
@@ -44,6 +69,13 @@ const LibraryCard = ({ library }: LibraryCardProps) => {
           </div>
         </div>
       </div>
+      
+      {/* Examples section (collapsible) */}
+      {showExamples && hasExamples && (
+        <div className="border-t border-gray-200 bg-gray-50 p-6">
+          <LibraryExamples examples={allExamples[library.name]} />
+        </div>
+      )}
     </div>
   );
 };
