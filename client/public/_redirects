@@ -1,0 +1,7 @@
+# Netlify redirect rules
+
+# API requests go to the Netlify Functions
+/api/*  /.netlify/functions/api/:splat  200
+
+# All other routes handled by the SPA
+/*      /index.html                     200

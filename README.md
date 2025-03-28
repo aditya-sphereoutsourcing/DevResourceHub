@@ -102,7 +102,7 @@ DevResourceHub/
 - **Frontend**: React, TypeScript, TailwindCSS, shadcn/ui
 - **Backend**: Node.js, Express
 - **Database**: PostgreSQL (with Drizzle ORM)
-- **Deployment**: Replit
+- **Deployment**: Replit, Netlify (serverless functions)
 
 ## 🏁 Getting Started
 
