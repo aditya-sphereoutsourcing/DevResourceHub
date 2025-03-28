@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { useLocation } from 'wouter';
 import { 
   Select,
   SelectContent,
@@ -12,7 +13,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "../compone
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Separator } from "../components/ui/separator";
 import { Badge } from "../components/ui/badge";
-import { AlignLeft, Clock, Database, Loader, Play, Code, Activity, Share } from "lucide-react";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { AlignLeft, Clock, Database, Loader, Play, Code, Activity, Share, Edit, Plus, Save } from "lucide-react";
 import { SupportedLanguage, SUPPORTED_LANGUAGES } from '../data/constants';
 
 // Define practice problem types
@@ -220,6 +223,7 @@ const spaceComplexities = [
 ];
 
 export default function PracticeGroundPage() {
+  const [location] = useLocation();
   const [selectedLanguage, setSelectedLanguage] = useState<SupportedLanguage>("JavaScript");
   const [selectedProblem, setSelectedProblem] = useState<PracticeProblem | null>(null);
   const [userCode, setUserCode] = useState<string>("");
@@ -230,13 +234,49 @@ export default function PracticeGroundPage() {
   const [executionTime, setExecutionTime] = useState<number | null>(null);
   const [memoryUsed, setMemoryUsed] = useState<number | null>(null);
   
-  // Initialize with the first problem
+  // Editor mode states
+  const isEditorMode = location.includes('/editor');
+  const [editingProblemId, setEditingProblemId] = useState<string>("");
+  const [editingProblemTitle, setEditingProblemTitle] = useState<string>("");
+  const [editingProblemDescription, setEditingProblemDescription] = useState<string>("");
+  const [editingProblemDifficulty, setEditingProblemDifficulty] = useState<'easy' | 'medium' | 'hard'>('easy');
+  const [editingProblemCategory, setEditingProblemCategory] = useState<string>("");
+  const [editingProblemConstraints, setEditingProblemConstraints] = useState<string>("");
+  const [editingProblemExampleInputs, setEditingProblemExampleInputs] = useState<string>("");
+  const [editingProblemExampleOutputs, setEditingProblemExampleOutputs] = useState<string>("");
+  const [editingProblemStarterCode, setEditingProblemStarterCode] = useState<string>("");
+  const [editingProblemTestCases, setEditingProblemTestCases] = useState<string>("");
+  const [submitStatus, setSubmitStatus] = useState<{success?: boolean, message?: string} | null>(null);
+  
+  // Initialize with the first problem or load problem for editing
   useEffect(() => {
-    if (sampleProblems.length > 0) {
+    if (isEditorMode) {
+      // Extract problem ID from URL if editing an existing problem
+      const problemIdMatch = location.match(/\/editor\/([^/]+)/);
+      if (problemIdMatch && problemIdMatch[1]) {
+        const problemId = problemIdMatch[1];
+        const problemToEdit = sampleProblems.find(p => p.id === problemId);
+        
+        if (problemToEdit) {
+          // Populate editor form with problem data
+          setEditingProblemId(problemToEdit.id);
+          setEditingProblemTitle(problemToEdit.title);
+          setEditingProblemDescription(problemToEdit.description);
+          setEditingProblemDifficulty(problemToEdit.difficulty);
+          setEditingProblemCategory(problemToEdit.category);
+          setEditingProblemConstraints(problemToEdit.constraints);
+          setEditingProblemExampleInputs(problemToEdit.exampleInputs.join('\n'));
+          setEditingProblemExampleOutputs(problemToEdit.exampleOutputs.join('\n'));
+          setEditingProblemStarterCode(JSON.stringify(problemToEdit.starterCode, null, 2));
+          setEditingProblemTestCases(JSON.stringify(problemToEdit.testCases, null, 2));
+        }
+      }
+    } else if (sampleProblems.length > 0) {
+      // For normal practice mode
       setSelectedProblem(sampleProblems[0]);
       setUserCode(sampleProblems[0].starterCode[selectedLanguage] || "");
     }
-  }, []);
+  }, [isEditorMode, location]);
   
   // Update code when problem or language changes
   useEffect(() => {
@@ -297,11 +337,25 @@ export default function PracticeGroundPage() {
 
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Practice Ground</h1>
-            <p className="text-gray-600 text-lg">
-              Sharpen your coding skills with algorithmic challenges and performance analysis
-            </p>
+          <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Practice Ground</h1>
+              <p className="text-gray-600 text-lg">
+                Sharpen your coding skills with algorithmic challenges and performance analysis
+              </p>
+            </div>
+            {/* Show only in practice mode, not editor mode */}
+            {!isEditorMode && (
+              <div className="mt-4 md:mt-0">
+                <Button 
+                  onClick={() => window.location.href = '/practice/editor'}
+                  className="flex items-center"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create New Problem
+                </Button>
+              </div>
+            )}
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -336,10 +390,12 @@ export default function PracticeGroundPage() {
                     {sampleProblems.map(problem => (
                       <div 
                         key={problem.id}
-                        className={`py-2 px-3 border rounded hover:bg-gray-50 cursor-pointer transition-colors ${selectedProblem?.id === problem.id ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}`}
-                        onClick={() => setSelectedProblem(problem)}
+                        className={`py-2 px-3 border rounded hover:bg-gray-50 transition-colors ${selectedProblem?.id === problem.id ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}`}
                       >
-                        <div className="flex justify-between items-center">
+                        <div 
+                          className="flex justify-between items-center cursor-pointer"
+                          onClick={() => setSelectedProblem(problem)}
+                        >
                           <span className="font-medium">{problem.title}</span>
                           <Badge variant={
                             problem.difficulty === 'easy' ? 'default' : 
@@ -348,8 +404,23 @@ export default function PracticeGroundPage() {
                             {problem.difficulty}
                           </Badge>
                         </div>
-                        <div className="text-xs text-gray-500 mt-1">
-                          {problem.category}
+                        <div className="flex justify-between items-center mt-1">
+                          <div className="text-xs text-gray-500">
+                            {problem.category}
+                          </div>
+                          {!isEditorMode && (
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-6 w-6"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.location.href = `/practice/editor/${problem.id}`;
+                              }}
+                            >
+                              <Edit className="h-3 w-3" />
+                            </Button>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -666,6 +737,255 @@ export default function PracticeGroundPage() {
                     </Tabs>
                   </CardContent>
                 </Card>
+              )}
+
+              {/* Problem Editor UI - Shown only in editor mode */}
+              {isEditorMode && (
+                <div className="mt-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>
+                        {location.includes('/editor/') ? 'Edit Problem' : 'Create New Problem'}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {/* Problem ID */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Problem ID</label>
+                          <Input
+                            placeholder="unique-problem-id"
+                            value={editingProblemId}
+                            onChange={(e) => setEditingProblemId(e.target.value)}
+                            disabled={location.includes('/editor/')}
+                          />
+                          <p className="text-xs text-gray-500">
+                            Unique identifier for the problem. Cannot contain spaces.
+                          </p>
+                        </div>
+
+                        {/* Problem Title */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Title</label>
+                          <Input
+                            placeholder="Problem title"
+                            value={editingProblemTitle}
+                            onChange={(e) => setEditingProblemTitle(e.target.value)}
+                          />
+                        </div>
+
+                        {/* Problem Difficulty */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Difficulty</label>
+                          <Select
+                            value={editingProblemDifficulty}
+                            onValueChange={(value) => setEditingProblemDifficulty(value as 'easy' | 'medium' | 'hard')}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select difficulty" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="easy">Easy</SelectItem>
+                              <SelectItem value="medium">Medium</SelectItem>
+                              <SelectItem value="hard">Hard</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        {/* Problem Category */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Category</label>
+                          <Input
+                            placeholder="arrays, strings, dynamic programming, etc."
+                            value={editingProblemCategory}
+                            onChange={(e) => setEditingProblemCategory(e.target.value)}
+                          />
+                        </div>
+
+                        {/* Problem Description */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Description</label>
+                          <Textarea
+                            placeholder="Detailed problem description"
+                            value={editingProblemDescription}
+                            onChange={(e) => setEditingProblemDescription(e.target.value)}
+                            rows={5}
+                          />
+                        </div>
+
+                        {/* Problem Constraints */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Constraints</label>
+                          <Textarea
+                            placeholder="Problem constraints (e.g., 1 <= n <= 10^5)"
+                            value={editingProblemConstraints}
+                            onChange={(e) => setEditingProblemConstraints(e.target.value)}
+                            rows={2}
+                          />
+                        </div>
+
+                        {/* Example Inputs */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Example Inputs</label>
+                          <Textarea
+                            placeholder="One example input per line (e.g., [1,2,3])"
+                            value={editingProblemExampleInputs}
+                            onChange={(e) => setEditingProblemExampleInputs(e.target.value)}
+                            rows={3}
+                          />
+                          <p className="text-xs text-gray-500">
+                            Each line will be treated as a separate example input. Use \n for newlines.
+                          </p>
+                        </div>
+
+                        {/* Example Outputs */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Example Outputs</label>
+                          <Textarea
+                            placeholder="One example output per line (e.g., [2,3,4])"
+                            value={editingProblemExampleOutputs}
+                            onChange={(e) => setEditingProblemExampleOutputs(e.target.value)}
+                            rows={3}
+                          />
+                          <p className="text-xs text-gray-500">
+                            Must have the same number of lines as example inputs.
+                          </p>
+                        </div>
+
+                        {/* Starter Code */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Starter Code (JSON)</label>
+                          <Textarea
+                            placeholder='{"JavaScript": "function solution(params) { ... }", "Python": "def solution(params): ..."}'
+                            value={editingProblemStarterCode}
+                            onChange={(e) => setEditingProblemStarterCode(e.target.value)}
+                            rows={5}
+                            className="font-mono text-sm"
+                          />
+                          <p className="text-xs text-gray-500">
+                            JSON object with language keys and starter code values.
+                          </p>
+                        </div>
+
+                        {/* Test Cases */}
+                        <div className="grid grid-cols-1 gap-2">
+                          <label className="text-sm font-medium">Test Cases (JSON)</label>
+                          <Textarea
+                            placeholder='[{"input": "[1,2,3]", "output": "6"}, {"input": "[4,5,6]", "output": "15", "hidden": true}]'
+                            value={editingProblemTestCases}
+                            onChange={(e) => setEditingProblemTestCases(e.target.value)}
+                            rows={5}
+                            className="font-mono text-sm"
+                          />
+                          <p className="text-xs text-gray-500">
+                            JSON array of test cases with input, output, and optional hidden flag.
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                    <CardFooter className="justify-between">
+                      <div>
+                        {submitStatus && (
+                          <div className={`text-sm ${submitStatus.success ? 'text-green-600' : 'text-red-600'}`}>
+                            {submitStatus.message}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex gap-2">
+                        <Button variant="outline" onClick={() => window.location.href = '/practice'}>
+                          Cancel
+                        </Button>
+                        <Button onClick={() => {
+                          // Form validation
+                          if (!editingProblemId || !editingProblemTitle || !editingProblemDescription) {
+                            setSubmitStatus({
+                              success: false,
+                              message: 'Please fill in all required fields'
+                            });
+                            return;
+                          }
+                          
+                          // Parse JSON fields
+                          let starterCode = {};
+                          let testCases = [];
+                          
+                          try {
+                            starterCode = JSON.parse(editingProblemStarterCode || '{}');
+                          } catch (e) {
+                            setSubmitStatus({
+                              success: false,
+                              message: 'Invalid JSON in starter code'
+                            });
+                            return;
+                          }
+                          
+                          try {
+                            testCases = JSON.parse(editingProblemTestCases || '[]');
+                          } catch (e) {
+                            setSubmitStatus({
+                              success: false,
+                              message: 'Invalid JSON in test cases'
+                            });
+                            return;
+                          }
+                          
+                          // Create problem object
+                          const problemData = {
+                            id: editingProblemId,
+                            title: editingProblemTitle,
+                            description: editingProblemDescription,
+                            difficulty: editingProblemDifficulty,
+                            category: editingProblemCategory,
+                            constraints: editingProblemConstraints,
+                            exampleInputs: editingProblemExampleInputs.split('\n'),
+                            exampleOutputs: editingProblemExampleOutputs.split('\n'),
+                            starterCode,
+                            testCases
+                          };
+                          
+                          // Submit to API
+                          const isEditing = location.includes('/editor/');
+                          const url = isEditing 
+                            ? `/api/problems/${editingProblemId}` 
+                            : '/api/problems';
+                          
+                          fetch(url, {
+                            method: isEditing ? 'PUT' : 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(problemData)
+                          })
+                          .then(response => {
+                            if (!response.ok) {
+                              throw new Error(`HTTP error ${response.status}`);
+                            }
+                            return response.json();
+                          })
+                          .then(data => {
+                            setSubmitStatus({
+                              success: true,
+                              message: data.message || 'Problem saved successfully'
+                            });
+                            
+                            // Redirect after a delay
+                            setTimeout(() => {
+                              window.location.href = '/practice';
+                            }, 1500);
+                          })
+                          .catch(error => {
+                            console.error('Error saving problem:', error);
+                            setSubmitStatus({
+                              success: false,
+                              message: `Error: ${error.message}`
+                            });
+                          });
+                        }}>
+                          <Save className="h-4 w-4 mr-2" />
+                          Save Problem
+                        </Button>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                </div>
               )}
             </div>
           </div>

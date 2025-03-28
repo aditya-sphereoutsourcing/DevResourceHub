@@ -333,6 +333,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Error fetching embed information" });
     }
   });
+  
+  // POST add a new problem
+  app.post(`${apiPrefix}/problems`, async (req, res) => {
+    try {
+      const { 
+        id, 
+        title, 
+        description, 
+        difficulty, 
+        category, 
+        constraints, 
+        exampleInputs, 
+        exampleOutputs, 
+        starterCode, 
+        testCases 
+      } = req.body;
+      
+      // Validation
+      if (!id || !title || !description || !difficulty || !category) {
+        return res.status(400).json({ 
+          error: "Missing required fields", 
+          requiredFields: ["id", "title", "description", "difficulty", "category"] 
+        });
+      }
+      
+      // Check if problem ID already exists
+      const existingProblem = sampleProblems.find(p => p.id === id);
+      if (existingProblem) {
+        return res.status(409).json({ error: "Problem with this ID already exists" });
+      }
+      
+      // Create new problem object
+      const newProblem = {
+        id,
+        title,
+        description,
+        difficulty,
+        category,
+        constraints: constraints || "",
+        exampleInputs: exampleInputs || [],
+        exampleOutputs: exampleOutputs || [],
+        starterCode: starterCode || {},
+        testCases: testCases || []
+      };
+      
+      // In a real app, we would save to a database
+      // For this demo, we'll add to our in-memory array (though it won't persist on server restart)
+      sampleProblems.push(newProblem);
+      
+      res.status(201).json({ 
+        message: "Problem created successfully", 
+        problem: newProblem 
+      });
+    } catch (error) {
+      console.error("Error creating problem:", error);
+      res.status(500).json({ message: "Error creating problem" });
+    }
+  });
+  
+  // PUT update an existing problem
+  app.put(`${apiPrefix}/problems/:id`, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const problemData = req.body;
+      
+      // Find problem index
+      const problemIndex = sampleProblems.findIndex(p => p.id === id);
+      
+      if (problemIndex === -1) {
+        return res.status(404).json({ error: "Problem not found" });
+      }
+      
+      // Update problem (keeping the original id)
+      const updatedProblem = {
+        ...problemData,
+        id // Ensure ID remains the same
+      };
+      
+      // In a real app, we would update the database
+      // For this demo, we update our in-memory array
+      sampleProblems[problemIndex] = updatedProblem;
+      
+      res.status(200).json({ 
+        message: "Problem updated successfully", 
+        problem: updatedProblem 
+      });
+    } catch (error) {
+      console.error("Error updating problem:", error);
+      res.status(500).json({ message: "Error updating problem" });
+    }
+  });
 
   const httpServer = createServer(app);
 
