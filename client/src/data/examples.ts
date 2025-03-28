@@ -369,6 +369,6 @@ export const allExamples: Record<string, Example[]> = {
   "React": reactExamples,
   "NumPy": numpyExamples,
   "tokio": tokioExamples,
-  "C++ STL": cppStlExamples,
+  "STL": cppStlExamples,
   "SwiftUI": swiftUIExamples
 };

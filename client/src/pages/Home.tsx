@@ -7,6 +7,7 @@ import ContributeSection from "@/components/ContributeSection";
 import Footer from "@/components/Footer";
 import { libraries } from "@/data";
 import { Library } from "@/types";
+import { allExamples } from "@/data/examples";
 
 // Function to remove duplicate libraries based on name
 const removeDuplicates = (libraryList: Library[]): Library[] => {
