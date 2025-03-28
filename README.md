@@ -131,6 +131,47 @@ DevResourceHub/
 
 4. Open your browser and navigate to `http://localhost:5000`
 
+### Deployment to Netlify
+
+This project is set up for easy deployment to Netlify with serverless functions for the backend API.
+
+1. **Prepare for deployment**:
+   ```bash
+   # Build the application and prepare Netlify functions
+   ./scripts/deploy-to-netlify.sh
+   ```
+
+2. **Deploy using Netlify CLI**:
+   ```bash
+   # Install Netlify CLI if you haven't already
+   npm install -g netlify-cli
+   
+   # Login to your Netlify account
+   netlify login
+   
+   # Initialize Netlify site (first time only)
+   netlify init
+   
+   # Deploy to Netlify
+   netlify deploy --prod
+   ```
+
+3. **Manual Deployment**:
+   - Fork or clone this repository to your GitHub account
+   - Login to your Netlify account and click "New site from Git"
+   - Connect your GitHub repository
+   - Configure build settings:
+     - Build command: `npm run build && node scripts/generate-netlify-functions.ts`
+     - Publish directory: `dist`
+   - Configure environment variables in the Netlify UI
+   - Deploy!
+
+4. **Environment Variables**:
+   Configure the following environment variables in the Netlify UI:
+   - `NODE_ENV`: Set to `production`
+   - `DATABASE_URL`: Your PostgreSQL database connection string (if applicable)
+   - Any other API keys or secrets required by your instance
+
 ## 📚 Contributing
 
 We welcome contributions! Here's how you can help:
