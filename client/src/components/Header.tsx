@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { CodeIcon } from "lucide-react";
+import { CodeIcon, Code, BarChart } from "lucide-react";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,20 +12,30 @@ const Header = () => {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <CodeIcon className="h-8 w-8 text-blue-700" />
-          <h1 className="text-xl font-semibold text-gray-800">DevLibGuide</h1>
-        </div>
+        <Link href="/">
+          <div className="flex items-center space-x-2 cursor-pointer">
+            <CodeIcon className="h-8 w-8 text-blue-700" />
+            <h1 className="text-xl font-semibold text-gray-800">DevLibGuide</h1>
+          </div>
+        </Link>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-6">
-          <Link href="#home" className="text-gray-700 hover:text-blue-700 font-medium">
+          <Link href="/" className="text-gray-700 hover:text-blue-700 font-medium">
             Home
           </Link>
-          <Link href="#languages" className="text-gray-700 hover:text-blue-700 font-medium">
+          <Link href="/#languages" className="text-gray-700 hover:text-blue-700 font-medium">
             Languages
           </Link>
-          <Link href="#contribute" className="text-gray-700 hover:text-blue-700 font-medium">
+          <Link href="/playground" className="text-gray-700 hover:text-blue-700 font-medium flex items-center">
+            <Code className="h-5 w-5 mr-1" />
+            Code Playground
+          </Link>
+          <Link href="/compare" className="text-gray-700 hover:text-blue-700 font-medium flex items-center">
+            <BarChart className="h-5 w-5 mr-1" />
+            Compare
+          </Link>
+          <Link href="/#contribute" className="text-gray-700 hover:text-blue-700 font-medium">
             Contribute
           </Link>
           <a
@@ -76,21 +86,37 @@ const Header = () => {
       >
         <div className="container mx-auto px-4 py-2 space-y-2">
           <Link
-            href="#home"
+            href="/"
             className="block py-2 text-gray-700 font-medium"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Home
           </Link>
           <Link
-            href="#languages"
+            href="/#languages"
             className="block py-2 text-gray-700 font-medium"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Languages
           </Link>
           <Link
-            href="#contribute"
+            href="/playground"
+            className="block py-2 text-gray-700 font-medium flex items-center"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <Code className="h-5 w-5 mr-2" />
+            Code Playground
+          </Link>
+          <Link
+            href="/compare"
+            className="block py-2 text-gray-700 font-medium flex items-center"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <BarChart className="h-5 w-5 mr-2" />
+            Compare
+          </Link>
+          <Link
+            href="/#contribute"
             className="block py-2 text-gray-700 font-medium"
             onClick={() => setIsMobileMenuOpen(false)}
           >

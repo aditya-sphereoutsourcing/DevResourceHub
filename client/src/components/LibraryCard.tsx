@@ -15,9 +15,6 @@ const LibraryCard = ({ library }: LibraryCardProps) => {
   // Check if we have examples for this library
   const hasExamples = allExamples[library.name] !== undefined;
   
-  // For debugging
-  console.log(`Library: ${library.name}, Has Examples: ${hasExamples}, Available examples: ${Object.keys(allExamples).join(', ')}`);
-  
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
       <div className="p-6">
